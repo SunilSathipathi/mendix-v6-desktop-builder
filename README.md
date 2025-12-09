@@ -121,6 +121,22 @@ docker build --tag mendix/mendix-buildpack:v1.2 <destination-dir>
 
 where `<destination-dir>` is the same as used when calling `build.py`.
 
+### Desktop UI (Windows)
+
+For a guided build-and-push experience on Windows, use the desktop UI in `ui/mendix_ui.py`:
+
+1. Ensure WSL with a Linux distro (e.g., `Ubuntu-22.04`) is installed.
+2. Run `python ui\mendix_ui.py` from this folder.
+3. Select your WSL distro and fill in:
+   - Buildpack directory, Mendix source, Docker context
+   - Image name and tag
+   - AWS Account ID, ECR Repo Name, AWS Region
+4. Optional: click `Install Basics` to install `python3` in WSL.
+5. Click `Start Build` to compile with `build.py` and build the runtime image.
+6. Click `Push to ECR` to tag and push the image using temporary AWS credentials.
+
+The UI separates build and push steps and shows logs for each action.
+
 ### Build an image from an MDA
 
 Before running the container, it is necessary to build the image with your application. This buildpack contains Dockerfile with a script that will compile your application using [cf-mendix-buildpack](https://github.com/mendix/cf-mendix-buildpack/).
